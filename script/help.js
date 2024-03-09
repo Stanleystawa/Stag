@@ -26,11 +26,11 @@ module.exports.run = async function ({
 			let page = 1;
 			let start = (page - 1) * pages;
 			let end = start + pages;
-			let helpMessage = `🔴🟢🟡\n\n『 𝗖𝗢𝗠𝗠𝗔𝗡𝗗 𝗟𝗜𝗦𝗧S 』\n\n♡  ∩_∩\n（„• ֊ •„)♡\n╭─∪∪───────────⟡`;
+			let helpMessage = `😗🍷\n\n『 Stanley bot 』\n\n♡  ∩_∩\n（„• ֊ •„)♡\n╭─∪∪───────────⟡`;
 			for (let i = start; i < Math.min(end, commands.length); i++) {
 				helpMessage += `\n├ ✧『 ${i + 1} 』  ${prefix}${commands[i]}\n├──────────────⟡\t`;
 			}
-			helpMessage += '\n╰──────────────⟡\n\n 『 𝗘𝗩𝗘𝗡𝗧 𝗟𝗜𝗦T 』\n\n';
+			helpMessage += '\n╰──────────────⟡\n\n 『 Stan bot 🤖 』\n\n';
 			eventCommands.forEach((eventCommand, index) => {
 				helpMessage += `╭──────────────⟡\n |『 ${index + 1} 』  ${prefix}${eventCommand}\n╰──────────────⟡\n`;
 			});
@@ -41,7 +41,7 @@ module.exports.run = async function ({
 			const pages = 100;
 			let start = (page - 1) * pages;
 			let end = start + pages;
-			let helpMessage = `𝗖𝗢𝗠𝗠𝗔𝗡𝗗 𝗟𝗜𝗦𝗧:\n\n`;
+			let helpMessage = `Stan bot 🤖:\n\n`;
 			for (let i = start; i < Math.min(end, commands.length); i++) {
 				helpMessage += `\t${i + 1}. 『 ${prefix}${commands[i]} 』\n`;
 			}
