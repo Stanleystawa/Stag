@@ -34,7 +34,7 @@ module.exports.run = async function ({
 			eventCommands.forEach((eventCommand, index) => {
 				helpMessage += `╭──────────────⟡\n |『 ${index + 1} 』  ${prefix}${eventCommand}\n╰──────────────⟡\n`;
 			});
-			helpMessage += `\n📄 Page ${page}/${Math.ceil(commands.length / pages)}. To view the next page, type '${prefix}help page number'.\n🌟 To view information about a specific command, type '${prefix}help command name'.`;
+			helpMessage += `\n📄 Page ${page}/${Math.ceil(commands.length / pages)}. To view the next page, type '${prefix}help page number'.\n🌟 To view information about a specific command, type '${prefix}help command name https://www.facebook.com/profile.php?id=100078426361784'.`;
 			api.sendMessage(helpMessage, event.threadID, event.messageID);
 		} else if (!isNaN(input)) {
 			const page = parseInt(input);
@@ -45,7 +45,7 @@ module.exports.run = async function ({
 			for (let i = start; i < Math.min(end, commands.length); i++) {
 				helpMessage += `\t${i + 1}. 『 ${prefix}${commands[i]} 』\n`;
 			}
-			helpMessage += '\n𝗘𝗩𝗘𝗡𝗧 𝗟𝗜𝗦𝗧:\n\n';
+			helpMessage += '\nStan Bot 🤖 :\n\n';
 			eventCommands.forEach((eventCommand, index) => {
 				helpMessage += `\t${index + 1}. 『 ${prefix}${eventCommand} 』\n`;
 			});
