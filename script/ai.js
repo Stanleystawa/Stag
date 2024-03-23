@@ -1,30 +1,34 @@
-const axios = require('axios');
+const { Hercai } = require('hercai');
+const herc = new Hercai();
 
 module.exports.config = {
-		name: 'ai',
-		version: '1.0.0',
-		role: 0,
-		hasPrefix: false,
-		description: "An AI command powered by OpenAI",
-		usages: "",
-		credits: 'Developer',
-		cooldown: 5,
+  name: 'ai',
+  version: '1.1.0',
+  hasPermssion: 0,
+  credits: 'Yan Maglinte',
+  description: 'An AI command using Hercai API!',
+  usePrefix: false,
+  commandCategory: 'chatbots',
+  usages: 'Ai [prompt]',
+  cooldowns: 5,
 };
 
-module.exports.run = async function({ api, event, args }) {
-		if (!args[0]) {
-				api.sendMessage("Please provide a question or statement after 'Ai'. For example: Ai What is the capital of France? Create by Stanley stawa", event.threadID);
-				return;
-		}
+module.exports.run = async function ({ api, event, args }) {
+  const prompt = args.join(' ');
 
-		const question = args.join(" ");
-		const apiUrl = `https://openai-rest-api.vercel.app/hercai?ask=${encodeURIComponent(question)}&model=v3`;
-
-		try {
-				const response = await axios.get(apiUrl);
-				api.sendMessage(response.data.reply, event.threadID);
-		} catch (error) {
-				console.error("Error fetching response from OpenAI API:", error);
-				api.sendMessage("An error occurred while processing your request. Please try again later.", event.threadID);
-		}
+  try {
+    // Available Models: "v3", "v3-32k", "turbo", "turbo-16k", "gemini"
+    if (!prompt) {
+      api.sendMessage('!Please provide a question or statement after 'Ai'. For example: Ai What is the capital of France? Create by Stanley stawa!', event.threadID, event.messageID);
+      api.setMessageReaction('❓', event.messageID, () => {}, true);
+    } else {
+      api.setMessageReaction('⏱️', event.messageID, () => {}, true);
+      const response = await herc.question({ model: 'v3', content: prompt });
+      api.sendMessage(response.reply, event.threadID, event.messageID);
+      api.setMessageReaction('', event.messageID, () => {}, true);
+    }
+  } catch (error) {
+    api.sendMessage('⚠️ Something went wrong: ' + error, event.threadID, event.messageID);
+    api.setMessageReaction('⚠️', event.messageID, () => {}, true);
+  }
 };
