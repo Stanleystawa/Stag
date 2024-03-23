@@ -19,7 +19,7 @@ module.exports.run = async function ({ api, event, args }) {
   try {
     // Available Models: "v3", "v3-32k", "turbo", "turbo-16k", "gemini"
     if (!prompt) {
-      api.sendMessage('!Please provide a question or statement after 'Ai'. For example: Ai What is the capital of France? Create by Stanley stawa!', event.threadID, event.messageID);
+      api.sendMessage('!Please provide a question or statement after Ai For example: Ai What is the capital of France? Create by Stanley stawa!', event.threadID, event.messageID);
       api.setMessageReaction('❓', event.messageID, () => {}, true);
     } else {
       api.setMessageReaction('⏱️', event.messageID, () => {}, true);
